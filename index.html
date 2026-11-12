@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Social Security Training Lab</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#10101b;color:#fff;
+ font-family:Arial,sans-serif;padding:20px;
+ min-height:100vh;display:grid;place-items:center
+}
+.card{
+ width:100%;max-width:390px;padding:27px;
+ background:#1d1d2b;border:1px solid #39394c;
+ border-radius:18px;text-align:center
+}
+.logo{font-size:27px;font-weight:bold}
+.tag{color:#ff8bbd;font-size:11px;letter-spacing:2px}
+.alert{
+ background:#3a2920;color:#ffd09b;
+ padding:13px;border-radius:9px;margin:20px 0;
+ font-size:14px;line-height:1.5
+}
+input{
+ width:100%;padding:14px;margin:7px 0;
+ border:1px solid #454559;border-radius:8px;
+ background:#11111b;color:white;font-size:14px
+}
+button{
+ width:100%;padding:14px;margin-top:12px;
+ border:0;border-radius:8px;color:white;
+ background:linear-gradient(90deg,#833ab4,#e1306c);
+ font-weight:bold;font-size:15px;cursor:pointer
+}
+.secondary{background:#343448}
+.note{font-size:12px;color:#aaa;line-height:1.5}
+#result,#dashboard{display:none;margin-top:20px}
+.stat{font-size:30px;color:#ff8bbd;font-weight:bold}
+hr{border-color:#39394c;margin:20px 0}
+</style>
+</head>
+<body>
+<div class="card">
+ <div class="tag">CYBERSECURITY TRAINING LAB</div>
+ <div class="logo">Social Security Lab</div>
+
+ <div class="alert">
+  <b>⚠ Training scenario: Account suspension</b>
+  <p>
+   This demonstration shows how fake account
+   suspension messages can pressure users into
+   visiting suspicious login pages.
+  </p>
+ </div>
+
+ <p class="note">
+  This is a fictional training exercise, not an
+  official Instagram security notification.
+ </p>
+
+ <form id="demoForm">
+  <input id="username" placeholder="Demo username"
+   autocomplete="off" required>
+
+  <input id="password" type="password"
+   placeholder="Dummy training password"
+   autocomplete="new-password" required>
+
+  <button type="submit">Simulate Login</button>
+ </form>
+
+ <p class="note">
+  Use fictional test details only. Passwords are
+  immediately discarded and never saved or sent.
+ </p>
+
+ <div id="result">
+  <hr>
+  <h3>⚠ Phishing simulation detected!</h3>
+  <p>
+   You have completed the training login exercise.
+   A real phishing website could misuse information
+   entered into it.
+  </p>
+  <p><b>Security lesson:</b> Never trust login links
+  in unexpected suspension messages.
+  </p>
+ </div>
+
+ <hr>
+ <button class="secondary" onclick="showDashboard()">
+  View Training Dashboard
+ </button>
+
+ <div id="dashboard">
+  <h3>Training Dashboard</h3>
+  <div class="stat" id="count">0</div>
+  <p class="note">Demo submissions this session</p>
+  <p class="note">
+   Only a submission count is retained in memory.
+   No usernames or passwords are recorded.
+  </p>
+  <button class="secondary" onclick="resetCount()">
+   Reset Dashboard
+  </button>
+ </div>
+
+ <hr>
+ <p class="note">
+  Educational project · Not affiliated with Meta
+  or Instagram.
+ </p>
+</div>
+
+<script>
+let submissions = 0;
+
+document.getElementById("demoForm")
+.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+
+  if (!username.value.trim() || !password.value) return;
+
+  // Never save, display, or transmit the password.
+  password.value = "";
+  username.value = "";
+
+  submissions++;
+  document.getElementById("count").textContent =
+    submissions;
+
+  document.getElementById("result").style.display =
+    "block";
+});
+
+function showDashboard(){
+  document.getElementById("dashboard").style.display =
+    "block";
+}
+
+function resetCount(){
+  submissions = 0;
+  document.getElementById("count").textContent = "0";
+}
+</script>
+</body>
+</html>
